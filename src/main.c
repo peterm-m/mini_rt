@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:47:54 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/29 11:35:02 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:57:23 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int main (int argc, char* argv[])
 {
 	t_scene	scene;
 
-//	if (ft_parser(&scene, argc, argv))
-//		return (EXIT_FAILURE);
+/* 	if (ft_parser(&scene, argc, argv))
+		perror ("Error\n"); */
 	init_scene_debug(&scene);
 	printf("MINIRT %s %s\n", __DATE__, __TIME__);
 	t_win	win =  ft_program(1024, 1024, "minirt");
