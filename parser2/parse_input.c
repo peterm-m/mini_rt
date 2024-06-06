@@ -1,46 +1,22 @@
 #include "minirt.h"
 
-/* int ft_strsubstr(char *str, char *to_find)
-{
-    int i;
-    int j;
-
-    i = 0;
-    j = 0;
-    while (str[i])
-    {
-        if (str[i] == to_find[j])
-        {
-            while (to_find[j])
-            {
-                if (str[i] != to_find[j])
-                    return (False);
-                i++;
-                j++;
-            }
-        }
-        i++;
-    }
-    return (True);
-} */
-
-static int init_scene(char *line, t_scene *scene)
+static int init_scene(char *line, t_scene *scene, int lgt_id, int obj_id)
 {
     char        **line_info;
 
     line_info = ft_split(line, ' ');
     if (ft_strncmp(line, 'A', 1))
-        return (get_A_vars(line_info, scene, "A"));
+        return (get_A_vars(line_info, scene));
     if (ft_strncmp(line, 'C', 1))
         return (get_C_vars(line_info, scene));
     if (ft_strncmp(line, 'L', 1))
-        return (get_L_vars(line_info, scene, "L"));
+        return (get_L_vars(line_info, scene, lgt_id));
     if (ft_strncmp(line, 'sp', 2))
-        return (get_sp_vars(line_info, scene, "sp"));
+        return (get_sp_vars(line_info, scene, obj_id));
     if (ft_strncmp(line, 'pl', 2))
-        return (get_pl_vars(line_info, scene, "pl"));
+        return (get_pl_vars(line_info, scene, obj_id));
     if (ft_strncmp(line, 'cy', 2))
-        return (get_cy_vars(line_info, scene, "cy"));
+        return (get_cy_vars(line_info, scene, obj_id));
     else
         return (EXIT_FAILURE);
 }
@@ -48,13 +24,21 @@ static int init_scene(char *line, t_scene *scene)
 static int get_input(int fd, t_scene *scene)
 {
 	char	*line;
+    int     light_index;
+    int     obj_index;
 
+    light_index = 1;
+    obj_index = 1;
 	line = get_next_line(fd);
 	if (!line)
 		return (EXIT_FAILURE);
 	while (line)
 	{
-		if (init_scene(line, scene) == EXIT_FAILURE)
+        if (ft_strncmp(line, "L", 1) == 0)
+            light_index++;
+        else if (is_object(line))
+            obj_index++;
+		if (init_scene(line, scene, light_index, obj_index) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 		line = get_next_line(fd);
 	}

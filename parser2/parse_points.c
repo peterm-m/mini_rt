@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-int get_A_vars(char **l_info,t_scene *scene, char *id)
+int get_A_vars(char **l_info, t_scene *scene)
 {
     int i;
 
@@ -37,7 +37,7 @@ int get_C_vars(char **l_info, t_scene *scene)
     return (EXIT_SUCCESS);
 }
 
-int get_L_vars(char **l_info,t_scene *scene, int light_id)
+int get_L_vars(char **l_info, t_scene *scene, int light_id)
 {
     if (get_coords(scene->lights[light_id]->pos, l_info[1]) == EXIT_FAILURE)
         return (EXIT_FAILURE);

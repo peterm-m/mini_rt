@@ -39,9 +39,9 @@ int get_coords(t_vec3 *vec, char *line)
     char **xyz;
 
     xyz = ft_split(line, ',');
-    if (xyz[3] || !in_range(INT_MIN, INT_MAX, xyz[0])
-        || !in_range(INT_MIN, INT_MAX, xyz[1])
-        || !in_range(INT_MIN, INT_MAX, xyz[1]))
+    if (xyz[3] || !in_range(__FLT_MIN__, __FLT_MAX__, xyz[0])
+        || !in_range(__FLT_MIN__, __FLT_MAX__, xyz[1])
+        || !in_range(__FLT_MIN__, __FLT_MAX__, xyz[1]))
         return (EXIT_FAILURE);
     vec = ft_vec3(ft_atof(xyz[0]), ft_atof(xyz[1]), ft_atof(xyz[2]));
     return (EXIT_SUCCESS);
