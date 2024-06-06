@@ -31,6 +31,7 @@
 # include "transformation.h"
 # include "wrappers.h"
 # include "parser.h"
+# include "parser2.h"
 # include "get_next_line.h"
 # include "libft.h"
 
@@ -49,8 +50,8 @@
 typedef struct s_scene
 {
 	t_camera	cam;
-	t_object	objs[OBJS_LIMIT];
-	t_light		lights[LIGHTS_LIMIT];
+	t_object	*objs;
+	t_light		*lights;
 }				t_scene;
 
 //

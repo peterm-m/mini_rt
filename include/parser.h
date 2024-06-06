@@ -3,7 +3,7 @@
 
 #define OBJECT_TYPES "A ,C ,L ,sp,pl,cy,cb,hb,pb"
 
-int		ft_parser(t_scene *scene, int argc, char **argv);
+/* int		ft_parser(t_scene *scene, int argc, char **argv); */
 char	*ft_jump_spaces(char *str);
 int		ft_type_sellector(char *type);
 int		ft_in_range_int(int min, int max, char **n);
