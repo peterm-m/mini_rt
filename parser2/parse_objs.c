@@ -66,3 +66,23 @@ int get_cy_vars(char **l_info, t_scene *scene, int o_id)
     scene->objs[o_id] = obj;
     return (EXIT_SUCCESS); 
 }
+
+int get_bx_vars(char **l_info, t_scene *scene, int o_id)
+{
+    t_object *obj;
+    t_shape  *shape;
+
+    shape = new_shape(sh_box);
+    if (get_coords(shape->bx->center, l_info[1]) == EXIT_FAILURE)
+        return (EXIT_FAILURE);
+    if (get_vector(shape->bx->half_side, l_info[2]) == EXIT_FAILURE)
+        return (EXIT_FAILURE);
+    obj = object_new(sh_box, shape);
+    if (get_colors(obj->material.color, l_info[3]) == EXIT_FAILURE)
+                return (EXIT_FAILURE);
+    if (l_info[4])
+        return (EXIT_FAILURE);
+    obj.type = sh_box;
+    scene->objs[o_id] = obj;
+    return (EXIT_SUCCESS); 
+}

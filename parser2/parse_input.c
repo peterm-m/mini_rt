@@ -17,6 +17,8 @@ static int init_scene(char *line, t_scene *scene, int lgt_id, int obj_id)
         return (get_pl_vars(line_info, scene, obj_id));
     if (ft_strncmp(line, 'cy', 2))
         return (get_cy_vars(line_info, scene, obj_id));
+    if (ft_strncmp(line, 'bx', 2))
+        return (get_bx_vars(line_info, scene, obj_id));
     else
         return (EXIT_FAILURE);
 }

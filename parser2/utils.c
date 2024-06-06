@@ -2,7 +2,7 @@
 
 int is_object(char *l)
 {
-    static char *objs = {"sp", "pl", "cy"}
+    static char *objs = {"sp", "pl", "cy", "bx"}
     int i;
 
     i = 0;
