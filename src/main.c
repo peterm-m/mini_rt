@@ -39,7 +39,7 @@ int	init_scene_debug(t_scene	*scene)
 	scene->lights[1].pos = ft_vec3(-30.0f, 60.0f, 0.0f);
 
 	// Esfera 1
-	t_sp *sphere1 = (t_sp)malloc(sizeof(t_sp));
+	t_sp *sphere1 = (t_sp)mallox(sizeof(t_sp));
 	sphere1->center = ft_vec3(0.0f, 0.0f, 20.0f);
 	sphere1->radius = 6.3f;
 	scene->objs[0].type = sh_sphere;
@@ -47,8 +47,17 @@ int	init_scene_debug(t_scene	*scene)
 	scene->objs[0].material.color = ft_vec4(55.0f, 55.0f, 55.0f, 1.0f);
 	scene->objs[0].pos_obj = ft_vec3(0.0f, 0.0f, 20.0f); // No se si es necesario.
 
+	// Esfera 2
+	t_sp *sphere2 = (t_sp)mallox(sizeof(t_sp));
+	sphere2->center = ft_vec3(0.0f, 20.0f, 20.0f);
+	sphere2->radius = 4.3f;
+	scene->objs[0].type = sh_sphere;
+	scene->objs[0].shape.sp = sphere2;
+	scene->objs[0].material.color = ft_vec4(0.0f, 255.0f, 0.0f, 1.0f);
+	scene->objs[0].pos_obj = ft_vec3(0.0f, 20.0f, 20.0f); // No se si es necesario.
+
 	// Plano 1
-	t_pl *plane1 = (t_pl)malloc(sizeof(t_pl));
+	t_pl *plane1 = (t_pl)mallox(sizeof(t_pl));
 	plane1->point = ft_vec3(0.0f, 0.0f, -10.0f);
 	plane1->normal = ft_vec3(0.0f, 1.0f, 0.0f);
 	plane1->material.color = ft_vec4(155.0f, 155.0f, 5.0f, 1.0f);
@@ -58,7 +67,7 @@ int	init_scene_debug(t_scene	*scene)
 	scene->objs[1].pos_obj = ft_vec3(0.0f, 0.0f, -10.0f); // No se si es necesario.
 	
 	// Cilindro 1
-	t_cy *cylinder1 = (t_pl)malloc(sizeof(t_pl));
+	t_cy *cylinder1 = (t_pl)mallox(sizeof(t_pl));
 	cylinder1->center = ft_vec3(50.0f, 0.0f, 20.0f);
 	cylinder1->normal = ft_vec3(0.0f, 0.0f, 1.0f);
 	cylinder1->material.color = ft_vec4(15.0f, 0.0f, 165.0f, 1.0f);
@@ -67,7 +76,19 @@ int	init_scene_debug(t_scene	*scene)
 	scene->objs[1].type = sh_cylinder;
 	scene->objs[1].shape.cy = cylinder1;
 	scene->objs[1].material.color = ft_vec4(15.0f, 0.0f, 165.0f, 1.0f);// No se si es necesario.
-	scene->objs[1].pos_obj = ft_vec3(0.0f, 0.0f, -10.0f); // No se si es necesario.
+	scene->objs[1].pos_obj = ft_vec3(50.0f, 0.0f, 20.0f); // No se si es necesario.
+
+	// Cilindro 2
+	t_cy *cylinder2 = (t_pl)mallox(sizeof(t_pl));
+	cylinder2->center = ft_vec3(50.0f, 50.0f, 20.0f);
+	cylinder2->normal = ft_vec3(0.0f, 0.0f, 1.0f);
+	cylinder2->material.color = ft_vec4(15.0f, 200.0f, 165.0f, 1.0f);
+	cylinder2->height = 13.42f;
+	cylinder2->radius = 7.1f;
+	scene->objs[1].type = sh_cylinder;
+	scene->objs[1].shape.cy = cylinder2;
+	scene->objs[1].material.color = ft_vec4(15.0f, 200.0f, 165.0f, 1.0f);// No se si es necesario.
+	scene->objs[1].pos_obj = ft_vec3(50.0f, 50.0f, 20.0f); // No se si es necesario.
 }
 
 void	ft_image(t_render *r, t_win *win, int w, int h)
