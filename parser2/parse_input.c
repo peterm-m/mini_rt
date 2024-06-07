@@ -48,9 +48,10 @@ static int get_input(int fd, t_scene *scene)
 }
 
 
-int init_struct(t_scene *s, fd)
+int init_struct(t_scene *s, int fd)
 {
     static int  ACLO[4] = {0, 0, 0, 0};
+    char *line;
 
 	while (1)
 	{
@@ -58,9 +59,9 @@ int init_struct(t_scene *s, fd)
         if (!line)
 		    return (EXIT_FAILURE);
         if (ft_strncmp(line, "A", 1) == 0)
-           ACL0[0] += 1;
+            ACLO[0] += 1;
         if (ft_strncmp(line, "C", 1) == 0)
-           ACLO[1] += 1;
+            ACLO[1] += 1;
         if (ft_strncmp(line, "L", 1) == 0)
             ACLO[2] += 1;
         if (is_object(line))
@@ -70,7 +71,7 @@ int init_struct(t_scene *s, fd)
 		return (EXIT_FAILURE);
     s->lights = (t_light *)malloc(sizeof(t_light) * (ACLO[2] + 1));
     s->objs = (t_object *)malloc(sizeof(t_object) * ACLO[3]);
-    s->cam = (t_camera)malloc(sizeof(t_camera));
+    s->cam = camera_new();
     return (EXIT_SUCCESS);
 }
 

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   applay.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 17:12:48 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/25 19:37:32 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:50:03 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "transformation.h"
 
-void	applay_transformation(t_matrix4 *m, t_vec3 *v, t_vec3 *d)
+void	applay_transformation(t_matrix4 *m, t_vec3 *v, t_vec3 *d)//TODO: ULTIMO PARAM ERA VEC3
 {
 	t_vec4	aux;
 

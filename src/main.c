@@ -6,7 +6,7 @@
 /*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:47:54 by pedromar          #+#    #+#             */
-/*   Updated: 2024/06/05 12:57:23 by adiaz-uf         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:06:23 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 int	init_scene_debug(t_scene	*scene)
 {
-	scene->cam.angle_of_view = 70.0f;
-	scene->cam.pos_cam = ft_vec3(-50.0f, 0.0f, 20.0f);
-	scene->cam.rot_cam = ft_vec3(0.0f, 0.0f, 0.0f);
-	scene->cam.scale_cam = ft_vec3(1.0f, 1.0f, 1.0f);
-	scene->cam.img_size[IMG_SIZE_X] = DEFAULT_IMGSIZE_X;
-	scene->cam.img_size[IMG_SIZE_Y] = DEFAULT_IMGSIZE_Y;
-	scene->cam.clipping[CLIP_NEAR] = DEFAULT_CLIPPING_NEAR;
-	scene->cam.clipping[CLIP_FAR] = DEFAULT_CLIPPING_FAR;
-	scene->cam.aperture[APERTURE_WIDTH] = DEFAULT_APERTURE_WIDTH;
-	scene->cam.aperture[APERTURE_HEIGHT] = DEFAULT_APERTURE_HEIGHT;
-	scene->cam.focal = 0.0f;
+	scene->lights = (t_light *)malloc(sizeof(t_light) * 2);
+    scene->objs = (t_object *)malloc(sizeof(t_object) * 5);
+    scene->cam = camera_new();
+	
+	scene->cam->angle_of_view = 70.0f;
+	scene->cam->pos_cam = ft_vec3(-50.0f, 0.0f, 20.0f);
+	scene->cam->rot_cam = ft_vec3(0.0f, 0.0f, 0.0f);
+	scene->cam->scale_cam = ft_vec3(1.0f, 1.0f, 1.0f);
+	scene->cam->img_size[IMG_SIZE_X] = DEFAULT_IMGSIZE_X;
+	scene->cam->img_size[IMG_SIZE_Y] = DEFAULT_IMGSIZE_Y;
+	scene->cam->clipping[CLIP_NEAR] = DEFAULT_CLIPPING_NEAR;
+	scene->cam->clipping[CLIP_FAR] = DEFAULT_CLIPPING_FAR;
+	scene->cam->aperture[APERTURE_WIDTH] = DEFAULT_APERTURE_WIDTH;
+	scene->cam->aperture[APERTURE_HEIGHT] = DEFAULT_APERTURE_HEIGHT;
+	scene->cam->focal = 0.0f;
 
 	//Lights[0] es la luz ambiente.
 	scene->lights[0].type = lgh_ambient;
@@ -39,56 +43,50 @@ int	init_scene_debug(t_scene	*scene)
 	scene->lights[1].pos = ft_vec3(-30.0f, 60.0f, 0.0f);
 
 	// Esfera 1
-	t_sp *sphere1 = (t_sp)mallox(sizeof(t_sp));
-	sphere1->center = ft_vec3(0.0f, 0.0f, 20.0f);
-	sphere1->radius = 6.3f;
-	scene->objs[0].type = sh_sphere;
-	scene->objs[0].shape.sp = sphere1;
-	scene->objs[0].material.color = ft_vec4(55.0f, 55.0f, 55.0f, 1.0f);
-	scene->objs[0].pos_obj = ft_vec3(0.0f, 0.0f, 20.0f); // No se si es necesario.
+	t_shape sphere1 = new_shape(sh_sphere);
+	sphere1.sp->center = ft_vec3(0.0f, 0.0f, 20.0f);
+	sphere1.sp->radius = 6.3f;
+	t_object *obj = object_new(sh_sphere, sphere1);
+	obj->material.color = ft_vec4(55.0f, 55.0f, 55.0f, 1.0f);
+	scene->objs[0] = *obj;
 
 	// Esfera 2
-	t_sp *sphere2 = (t_sp)mallox(sizeof(t_sp));
-	sphere2->center = ft_vec3(0.0f, 20.0f, 20.0f);
-	sphere2->radius = 4.3f;
-	scene->objs[0].type = sh_sphere;
-	scene->objs[0].shape.sp = sphere2;
-	scene->objs[0].material.color = ft_vec4(0.0f, 255.0f, 0.0f, 1.0f);
-	scene->objs[0].pos_obj = ft_vec3(0.0f, 20.0f, 20.0f); // No se si es necesario.
+	t_shape sphere2 = new_shape(sh_sphere);
+	sphere2.sp->center = ft_vec3(0.0f, 20.0f, 20.0f);
+	sphere2.sp->radius = 4.3f;
+	t_object *obj = object_new(sh_sphere, sphere2);
+	obj->material.color = ft_vec4(0.0f, 255.0f, 0.0f, 1.0f);
+	scene->objs[1] = *obj;
 
 	// Plano 1
-	t_pl *plane1 = (t_pl)mallox(sizeof(t_pl));
-	plane1->point = ft_vec3(0.0f, 0.0f, -10.0f);
-	plane1->normal = ft_vec3(0.0f, 1.0f, 0.0f);
-	plane1->material.color = ft_vec4(155.0f, 155.0f, 5.0f, 1.0f);
-	scene->objs[1].type = sh_plane;
-	scene->objs[1].shape.pl = plane1;
-	scene->objs[1].material.color = ft_vec4(155.0f, 155.0f, 5.0f, 1.0f);// No se si es necesario.
-	scene->objs[1].pos_obj = ft_vec3(0.0f, 0.0f, -10.0f); // No se si es necesario.
+	t_shape plane1 = new_shape(sh_plane);
+	plane1.pl->point = ft_vec3(0.0f, 0.0f, -10.0f);
+	plane1.pl->normal = ft_vec3(0.0f, 1.0f, 0.0f);
+	plane1.pl->material.color = ft_vec4(155.0f, 155.0f, 5.0f, 1.0f);
+	t_object *obj = object_new(sh_plane, plane1);
+	obj->material.color = ft_vec4(155.0f, 155.0f, 5.0f, 1.0f);// No se si es necesario.
+	scene->objs[2] = *obj;
 	
 	// Cilindro 1
-	t_cy *cylinder1 = (t_pl)mallox(sizeof(t_pl));
-	cylinder1->center = ft_vec3(50.0f, 0.0f, 20.0f);
-	cylinder1->normal = ft_vec3(0.0f, 0.0f, 1.0f);
-	cylinder1->material.color = ft_vec4(15.0f, 0.0f, 165.0f, 1.0f);
-	cylinder1->height = 21.42f;
-	cylinder1->radius = 7.1f;
-	scene->objs[1].type = sh_cylinder;
-	scene->objs[1].shape.cy = cylinder1;
-	scene->objs[1].material.color = ft_vec4(15.0f, 0.0f, 165.0f, 1.0f);// No se si es necesario.
-	scene->objs[1].pos_obj = ft_vec3(50.0f, 0.0f, 20.0f); // No se si es necesario.
+	t_shape cylinder1 = new_shape(sh_cylinder);
+	cylinder1.cy->center = ft_vec3(50.0f, 0.0f, 20.0f);
+	cylinder1.cy->normal = ft_vec3(0.0f, 0.0f, 1.0f);
+	cylinder1.cy->height = 21.42f;
+	cylinder1.cy->radius = 7.1f;
+	t_object *obj = object_new(sh_cylinder, cylinder1);
+	obj->material.color = ft_vec4(15.0f, 0.0f, 165.0f, 1.0f);
+	scene->objs[3] = *obj;
 
 	// Cilindro 2
-	t_cy *cylinder2 = (t_pl)mallox(sizeof(t_pl));
-	cylinder2->center = ft_vec3(50.0f, 50.0f, 20.0f);
-	cylinder2->normal = ft_vec3(0.0f, 0.0f, 1.0f);
-	cylinder2->material.color = ft_vec4(15.0f, 200.0f, 165.0f, 1.0f);
-	cylinder2->height = 13.42f;
-	cylinder2->radius = 7.1f;
-	scene->objs[1].type = sh_cylinder;
-	scene->objs[1].shape.cy = cylinder2;
-	scene->objs[1].material.color = ft_vec4(15.0f, 200.0f, 165.0f, 1.0f);// No se si es necesario.
-	scene->objs[1].pos_obj = ft_vec3(50.0f, 50.0f, 20.0f); // No se si es necesario.
+	t_shape cylinder2 = new_shape(sh_cylinder);
+	cylinder2.cy->center = ft_vec3(50.0f, 50.0f, 20.0f);
+	cylinder2.cy->normal = ft_vec3(0.0f, 0.0f, 1.0f);
+	cylinder2.cy->height = 13.42f;
+	cylinder2.cy->radius = 7.1f;
+	t_object *obj = object_new(sh_cylinder, cylinder2);
+	obj->material.color = ft_vec4(15.0f, 200.0f, 165.0f, 1.0f);
+	scene->objs[4] = *obj;
+
 }
 
 void	ft_image(t_render *r, t_win *win, int w, int h)

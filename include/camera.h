@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:58:08 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/26 13:31:09 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:51:07 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,6 @@ void		reset_camera(t_camera *cam);
 /*
  * put pixel coordinate in pix_coor. return this coordinates is in screen
 */
-bool		pixel_coordenate(t_camera *cam, t_vec4 v_world, t_vec2i *pix_coor);
+bool		pixel_coordenate(t_camera *cam, t_vec3 v_world, t_vec2i *pix_coor);//TODO V_WORLD ERA VEC4
 
 #endif

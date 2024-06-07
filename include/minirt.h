@@ -6,7 +6,7 @@
 /*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:45:23 by pedromar          #+#    #+#             */
-/*   Updated: 2024/06/05 13:07:35 by adiaz-uf         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:05:05 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@
 
 typedef struct s_scene
 {
-	t_camera	cam;
-	t_object	objs[OBJS_LIMIT];
-	t_light		lights[LIGHTS_LIMIT];
+	t_camera	*cam;
+	t_object	*objs;
+	t_light		*lights;
 }				t_scene;
 
 //

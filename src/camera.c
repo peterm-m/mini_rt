@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:01:50 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 16:30:55 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:50:17 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	update_camera(t_camera *cam)
 	- cam->canvas_windows.elements[CANVAS_RIGHT];
 }
 
-bool	pixel_coordenate(t_camera *cam, t_vec4 v_world, t_vec2i *pix_coor)
+bool	pixel_coordenate(t_camera *cam, t_vec3 v_world, t_vec2i *pix_coor)
 {
-	t_vec4	v_cam;
+	t_vec3	v_cam;
 	t_vec2	v_screen;
 	t_vec2	v_ndc;
 

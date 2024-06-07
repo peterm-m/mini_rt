@@ -1,6 +1,10 @@
 #ifndef PARSER2_H
 # define PARSER2_H
 
+typedef struct s_scene t_scene;
+
+#include "minirt.h"
+
 int ft_parser(t_scene *scene, int argc, char **argv);
 
 int get_A_vars(char **l_info, t_scene *scene);
