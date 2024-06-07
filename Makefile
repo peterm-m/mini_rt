@@ -6,7 +6,7 @@
 #    By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 17:51:17 by pedromar          #+#    #+#              #
-#    Updated: 2024/06/07 11:10:36 by adiaz-uf         ###   ########.fr        #
+#    Updated: 2024/06/07 12:42:55 by adiaz-uf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ TRANSFORMATIONDIR := transformation
 UTILSDIR := utils
 CONTROLDIR := controls
 OBJECTDIR := object
-PARSERDIR := parser
+PARSERDIR := parser2
 GNLDIR := get_next_line
 # Defines the C Compiler
 CC := gcc

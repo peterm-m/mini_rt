@@ -2,23 +2,13 @@
 
 int get_A_vars(char **l_info, t_scene *scene)
 {
-    int i;
-
-    i = 1;
     scene->lights[0].type = lgh_ambient;
-    while (l_info[i])
-    {
-        if (ft_strchr(l_info[i], ',') != NULL)
-        {
-            if (get_colors(&scene->lights[0].color, l_info[i]) == EXIT_FAILURE)
-                return (EXIT_FAILURE);
-        }
-        else if (in_range(0.0, 1.0, l_info[i]))
-            scene->lights[0].brightness = ft_atof(l_info[i]);
-        else
-            return (EXIT_FAILURE);
-        i++;
-    }
+    if (in_range(0.0f, 1.0f, l_info[1]))
+        scene->lights[0].brightness = ft_atof(l_info[1]);
+    else if (get_colors(&scene->lights[0].color, l_info[2]) == EXIT_FAILURE)
+        return (EXIT_FAILURE);
+    else
+        return (EXIT_FAILURE);
     return (EXIT_SUCCESS);
 }
 

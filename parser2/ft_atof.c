@@ -27,7 +27,7 @@ static float convert_num(char *str, int decimal_found, float fraction, float res
     return (result);
 }
 
-float ft_atof(const char *str) 
+float ft_atof(char *str) 
 {
     float result;
     float fraction;

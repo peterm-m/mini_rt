@@ -6,7 +6,7 @@
 /*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:47:54 by pedromar          #+#    #+#             */
-/*   Updated: 2024/06/07 11:06:23 by adiaz-uf         ###   ########.fr       */
+/*   Updated: 2024/06/07 12:44:58 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,26 @@ int	init_scene_debug(t_scene	*scene)
 	t_shape sphere1 = new_shape(sh_sphere);
 	sphere1.sp->center = ft_vec3(0.0f, 0.0f, 20.0f);
 	sphere1.sp->radius = 6.3f;
-	t_object *obj = object_new(sh_sphere, sphere1);
-	obj->material.color = ft_vec4(55.0f, 55.0f, 55.0f, 1.0f);
-	scene->objs[0] = *obj;
+	t_object *obj0 = object_new(sh_sphere, sphere1);
+	obj0->material.color = ft_vec4(55.0f, 55.0f, 55.0f, 1.0f);
+	scene->objs[0] = *obj0;
 
 	// Esfera 2
 	t_shape sphere2 = new_shape(sh_sphere);
 	sphere2.sp->center = ft_vec3(0.0f, 20.0f, 20.0f);
 	sphere2.sp->radius = 4.3f;
-	t_object *obj = object_new(sh_sphere, sphere2);
-	obj->material.color = ft_vec4(0.0f, 255.0f, 0.0f, 1.0f);
-	scene->objs[1] = *obj;
+	t_object *obj1 = object_new(sh_sphere, sphere2);
+	obj1->material.color = ft_vec4(0.0f, 255.0f, 0.0f, 1.0f);
+	scene->objs[1] = *obj1;
 
 	// Plano 1
 	t_shape plane1 = new_shape(sh_plane);
 	plane1.pl->point = ft_vec3(0.0f, 0.0f, -10.0f);
 	plane1.pl->normal = ft_vec3(0.0f, 1.0f, 0.0f);
 	plane1.pl->material.color = ft_vec4(155.0f, 155.0f, 5.0f, 1.0f);
-	t_object *obj = object_new(sh_plane, plane1);
-	obj->material.color = ft_vec4(155.0f, 155.0f, 5.0f, 1.0f);// No se si es necesario.
-	scene->objs[2] = *obj;
+	t_object *obj2 = object_new(sh_plane, plane1);
+	obj2->material.color = ft_vec4(155.0f, 155.0f, 5.0f, 1.0f);// No se si es necesario.
+	scene->objs[2] = *obj2;
 	
 	// Cilindro 1
 	t_shape cylinder1 = new_shape(sh_cylinder);
@@ -73,9 +73,9 @@ int	init_scene_debug(t_scene	*scene)
 	cylinder1.cy->normal = ft_vec3(0.0f, 0.0f, 1.0f);
 	cylinder1.cy->height = 21.42f;
 	cylinder1.cy->radius = 7.1f;
-	t_object *obj = object_new(sh_cylinder, cylinder1);
-	obj->material.color = ft_vec4(15.0f, 0.0f, 165.0f, 1.0f);
-	scene->objs[3] = *obj;
+	t_object *obj3 = object_new(sh_cylinder, cylinder1);
+	obj3->material.color = ft_vec4(15.0f, 0.0f, 165.0f, 1.0f);
+	scene->objs[3] = *obj3;
 
 	// Cilindro 2
 	t_shape cylinder2 = new_shape(sh_cylinder);
@@ -83,9 +83,9 @@ int	init_scene_debug(t_scene	*scene)
 	cylinder2.cy->normal = ft_vec3(0.0f, 0.0f, 1.0f);
 	cylinder2.cy->height = 13.42f;
 	cylinder2.cy->radius = 7.1f;
-	t_object *obj = object_new(sh_cylinder, cylinder2);
-	obj->material.color = ft_vec4(15.0f, 200.0f, 165.0f, 1.0f);
-	scene->objs[4] = *obj;
+	t_object *obj4 = object_new(sh_cylinder, cylinder2);
+	obj4->material.color = ft_vec4(15.0f, 200.0f, 165.0f, 1.0f);
+	scene->objs[4] = *obj4;
 
 }
 
@@ -123,9 +123,9 @@ int main (int argc, char* argv[])
 {
 	t_scene	scene;
 
-/* 	if (ft_parser(&scene, argc, argv))
-		perror ("Error\n"); */
-	init_scene_debug(&scene);
+ 	if (ft_parser(&scene, argc, argv))
+		return (EXIT_FAILURE);
+	//init_scene_debug(&scene);
 	printf("MINIRT %s %s\n", __DATE__, __TIME__);
 	t_win	win =  ft_program(1024, 1024, "minirt");
 	t_render *r = set_render(&win);

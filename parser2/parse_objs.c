@@ -84,5 +84,5 @@ int get_bx_vars(char **l_info, t_scene *scene, int o_id)
         return (EXIT_FAILURE);
     obj->type = sh_box;
     scene->objs[o_id] = *obj;
-    return (EXIT_SUCCESS); 
+    return (EXIT_SUCCESS);
 }
