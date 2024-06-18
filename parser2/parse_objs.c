@@ -5,6 +5,8 @@ int get_sp_vars(char **l_info, t_scene *scene, int o_id)
     t_object *obj;
     t_shape  shape;
 
+    if (arr_size(l_info) != 4)
+        return (EXIT_FAILURE);
     shape = new_shape(sh_sphere);
     if (get_coords(&shape.sp->center, l_info[1]) == EXIT_FAILURE)
         return (EXIT_FAILURE);
@@ -26,6 +28,8 @@ int get_pl_vars(char **l_info, t_scene *scene, int o_id)
     t_object *obj;
     t_shape  shape;
 
+    if (arr_size(l_info) != 4)
+        return (EXIT_FAILURE);
     shape = new_shape(sh_plane);
     if (get_coords(&shape.pl->point, l_info[1]) == EXIT_FAILURE)
         return (EXIT_FAILURE);
@@ -46,6 +50,8 @@ int get_cy_vars(char **l_info, t_scene *scene, int o_id)
     t_object *obj;
     t_shape  shape;
 
+    if (arr_size(l_info) != 6)
+        return (EXIT_FAILURE);
     shape = new_shape(sh_cylinder);
     if (get_coords(&shape.cy->center, l_info[1]) == EXIT_FAILURE)
         return (EXIT_FAILURE);
@@ -72,6 +78,8 @@ int get_bx_vars(char **l_info, t_scene *scene, int o_id)
     t_object *obj;
     t_shape  shape;
 
+    if (arr_size(l_info) != 4)
+        return (EXIT_FAILURE);
     shape = new_shape(sh_box);
     if (get_coords(&shape.bx->center, l_info[1]) == EXIT_FAILURE)
         return (EXIT_FAILURE);

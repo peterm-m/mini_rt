@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:48:06 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/29 16:45:43 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:16:49 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef t_vec4	t_argb;
 	log colors
 */
 
-# define NO_COLOR    "\x1b[0m"
+# define END    "\x1b[0m"
 # define RED         "\x1b[31m"
 # define GREEN       "\x1b[32m"
 # define BROWN       "\x1b[33m"
