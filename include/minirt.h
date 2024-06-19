@@ -6,7 +6,7 @@
 /*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:45:23 by pedromar          #+#    #+#             */
-/*   Updated: 2024/06/07 11:05:05 by adiaz-uf         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:43:27 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_scene
 	t_camera	*cam;
 	t_object	*objs;
 	t_light		*lights;
+	int			objs_count;
+	int			lgts_count;
 }				t_scene;
 
 //
@@ -63,5 +65,9 @@ int		raster_loop(t_render *r);
 int		raytracer_loop(t_render *r);
 //
 int		ft_end_program(t_render *r);
+
+//TODO: DEBUG PARSER
+int	init_scene_debug(t_scene	*scene);
+void	test_parser(t_scene	scene);
 
 #endif // MINIRT_H

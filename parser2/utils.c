@@ -44,7 +44,7 @@ int is_object(char *l)
 
 int in_range(float a, float b, char *num)
 {
-    if (ft_atof(num) >= a || ft_atof(num) <= b)
+    if (ft_atof(num) >= a && ft_atof(num) <= b)
         return (TRUE);
     return (FALSE);
 }
@@ -56,13 +56,13 @@ int get_colors(t_vec4 *color, char *line)
     if (!line)
         return (EXIT_FAILURE);
     rgb = ft_split(line, ',');
-    if (arr_size(rgb) != 3 || !in_range(0.0, 255.0, rgb[0]) || !in_range(0.0, 255.0, rgb[1])
-        || !in_range(0.0, 255.0, rgb[1]))
+    if (arr_size(rgb) != 3 || !in_range(0.0f, 255.0f, rgb[0]) || !in_range(0.0f, 255.0f, rgb[1])
+        || !in_range(0.0f, 255.0f, rgb[2]))
     {
         ft_free_arr(rgb);
         return (EXIT_FAILURE);
     }
-    *color = ft_vec4(ft_atof(rgb[0]), ft_atof(rgb[1]), ft_atof(rgb[2]), 1.0);
+    *color = ft_vec4(ft_atof(rgb[0]), ft_atof(rgb[1]), ft_atof(rgb[2]), 0.0);
     ft_free_arr(rgb);
     return (EXIT_SUCCESS);
 }
@@ -74,9 +74,9 @@ int get_coords(t_vec3 *vec, char *line)
     if (!line)
         return (EXIT_FAILURE);
     xyz = ft_split(line, ',');
-    if (arr_size(xyz) != 3|| !in_range(__FLT_MIN__, __FLT_MAX__, xyz[0])
-        || !in_range(__FLT_MIN__, __FLT_MAX__, xyz[1])
-        || !in_range(__FLT_MIN__, __FLT_MAX__, xyz[1]))
+    if (arr_size(xyz) != 3 || !in_range(-__FLT_MAX__, __FLT_MAX__, xyz[0])
+        || !in_range(-__FLT_MAX__, __FLT_MAX__, xyz[1])
+        || !in_range(-__FLT_MAX__, __FLT_MAX__, xyz[2]))
     {
         ft_free_arr(xyz);
         return (EXIT_FAILURE);

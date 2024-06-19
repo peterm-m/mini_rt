@@ -6,7 +6,7 @@
 /*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:49:22 by pedromar          #+#    #+#             */
-/*   Updated: 2024/06/18 12:47:18 by adiaz-uf         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:31:53 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	*mallox(size_t size)
 	void	*new;
 
 	new = malloc(size);
-	printf(BROWN"%p\n"END, new);
 	if (!new)
 		exit (EXIT_FAILURE);
 	return (new);

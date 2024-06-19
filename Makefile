@@ -6,7 +6,7 @@
 #    By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 17:51:17 by pedromar          #+#    #+#              #
-#    Updated: 2024/06/07 12:42:55 by adiaz-uf         ###   ########.fr        #
+#    Updated: 2024/06/19 11:48:57 by adiaz-uf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ GNLDIR := get_next_line
 # Defines the C Compiler
 CC := gcc
 
-WARNS := -Wall -Wextra -fsanitize=undefined -fsanitize=address # -Werror -pedantic
+WARNS := -Wall -Wextra -fsanitize=undefined -fsanitize=address #-Werror -pedantic
 
 # Flags for compiling
 CFLAGS := $(WARNS) # -O3

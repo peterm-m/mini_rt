@@ -6,88 +6,11 @@
 /*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:47:54 by pedromar          #+#    #+#             */
-/*   Updated: 2024/06/18 10:40:34 by adiaz-uf         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:44:41 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-int	init_scene_debug(t_scene	*scene)
-{
-	scene->lights = (t_light *)malloc(sizeof(t_light) * 2);
-    scene->objs = (t_object *)malloc(sizeof(t_object) * 5);
-    scene->cam = camera_new();
-	
-	scene->cam->angle_of_view = 70.0f;
-	scene->cam->pos_cam = ft_vec3(-50.0f, 0.0f, 20.0f);
-	scene->cam->rot_cam = ft_vec3(0.0f, 0.0f, 0.0f);
-	scene->cam->scale_cam = ft_vec3(1.0f, 1.0f, 1.0f);
-	scene->cam->img_size[IMG_SIZE_X] = DEFAULT_IMGSIZE_X;
-	scene->cam->img_size[IMG_SIZE_Y] = DEFAULT_IMGSIZE_Y;
-	scene->cam->clipping[CLIP_NEAR] = DEFAULT_CLIPPING_NEAR;
-	scene->cam->clipping[CLIP_FAR] = DEFAULT_CLIPPING_FAR;
-	scene->cam->aperture[APERTURE_WIDTH] = DEFAULT_APERTURE_WIDTH;
-	scene->cam->aperture[APERTURE_HEIGHT] = DEFAULT_APERTURE_HEIGHT;
-	scene->cam->focal = 0.0f;
-
-	//Lights[0] es la luz ambiente.
-	scene->lights[0].type = lgh_ambient;
-	scene->lights[0].brightness = 0.2f;
-	scene->lights[0].color = ft_vec4(255.0f, 255.0f, 255.0f, 1.0f);
-	// TODO: Creo que el color deberia ser vec3.
-
-	//Light[1] es la luz, en caso de bonus: light[1] - light[n]
-	scene->lights[1].type = lgh_point;
-	scene->lights[1].brightness = 0.6f;
-	scene->lights[1].color = ft_vec4(15.0f, 0.0f, 255.0f, 1.0f);
-	scene->lights[1].pos = ft_vec3(-30.0f, 60.0f, 0.0f);
-
-	// Esfera 1
-	t_shape sphere1 = new_shape(sh_sphere);
-	sphere1.sp->center = ft_vec3(0.0f, 0.0f, 20.0f);
-	sphere1.sp->radius = 6.3f;
-	t_object *obj0 = object_new(sh_sphere, sphere1);
-	obj0->material.color = ft_vec4(55.0f, 55.0f, 55.0f, 1.0f);
-	scene->objs[0] = *obj0;
-
-	// Esfera 2
-	t_shape sphere2 = new_shape(sh_sphere);
-	sphere2.sp->center = ft_vec3(0.0f, 20.0f, 20.0f);
-	sphere2.sp->radius = 4.3f;
-	t_object *obj1 = object_new(sh_sphere, sphere2);
-	obj1->material.color = ft_vec4(0.0f, 255.0f, 0.0f, 1.0f);
-	scene->objs[1] = *obj1;
-
-	// Plano 1
-	t_shape plane1 = new_shape(sh_plane);
-	plane1.pl->point = ft_vec3(0.0f, 0.0f, -10.0f);
-	plane1.pl->normal = ft_vec3(0.0f, 1.0f, 0.0f);
-	plane1.pl->material.color = ft_vec4(155.0f, 155.0f, 5.0f, 1.0f);
-	t_object *obj2 = object_new(sh_plane, plane1);
-	obj2->material.color = ft_vec4(155.0f, 155.0f, 5.0f, 1.0f);// No se si es necesario.
-	scene->objs[2] = *obj2;
-	
-	// Cilindro 1
-	t_shape cylinder1 = new_shape(sh_cylinder);
-	cylinder1.cy->center = ft_vec3(50.0f, 0.0f, 20.0f);
-	cylinder1.cy->normal = ft_vec3(0.0f, 0.0f, 1.0f);
-	cylinder1.cy->height = 21.42f;
-	cylinder1.cy->radius = 7.1f;
-	t_object *obj3 = object_new(sh_cylinder, cylinder1);
-	obj3->material.color = ft_vec4(15.0f, 0.0f, 165.0f, 1.0f);
-	scene->objs[3] = *obj3;
-
-	// Cilindro 2
-	t_shape cylinder2 = new_shape(sh_cylinder);
-	cylinder2.cy->center = ft_vec3(50.0f, 50.0f, 20.0f);
-	cylinder2.cy->normal = ft_vec3(0.0f, 0.0f, 1.0f);
-	cylinder2.cy->height = 13.42f;
-	cylinder2.cy->radius = 7.1f;
-	t_object *obj4 = object_new(sh_cylinder, cylinder2);
-	obj4->material.color = ft_vec4(15.0f, 200.0f, 165.0f, 1.0f);
-	scene->objs[4] = *obj4;
-
-}
 
 void	ft_image(t_render *r, t_win *win, int w, int h)
 {
@@ -118,13 +41,15 @@ t_render	*set_render(t_win *win)
 	return (new);
 }
 
-
 int main (int argc, char* argv[])
 {
 	t_scene	scene;
 
- 	if (ft_parser(&scene, argc, argv))
+	scene.lgts_count = 0;
+	scene.objs_count = 0;
+	if (ft_parser(&scene, argc, argv))
 		return (EXIT_FAILURE);
+	test_parser(scene);
 	//init_scene_debug(&scene);
 	printf("MINIRT %s %s\n", __DATE__, __TIME__);
 	t_win	win =  ft_program(1024, 1024, "minirt");

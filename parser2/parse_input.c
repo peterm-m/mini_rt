@@ -4,22 +4,15 @@ void free_scene(t_scene *scene)
 {
     int i;
 
-    i = 0; 
-/*     while (&scene->lights[i])
-    {
-        ft_putendl_fd("freeeeeee", 1);
-        free(&scene->lights[i]);
-        i++;
-    } */
     free(scene->lights);
-    i = -1;
-    while (&scene->objs[++i])
+    i = 0;
+    while (i < scene->objs_count)
     {
-        object_destroy(&scene->objs[i]);
-        printf("objeto: %d\n", i);
+        if (&scene->objs[i])
+            object_destroy(&scene->objs[i]);
+        i++;
     }
-    printf(CYAN"%p\n"END, scene->objs);
-    //free(scene->objs);
+    free(scene->objs);
     camera_destroy(scene->cam);
 }
 
@@ -80,7 +73,7 @@ static int get_input(int fd, t_scene *scene)
 
 int init_structs(t_scene *s, int fd)
 {
-    static int  aclo[4] = {0, 0, 0, 0};
+    static int  aclo[2] = {0, 0};
     char        *line;
 
 	while (1)
@@ -93,18 +86,17 @@ int init_structs(t_scene *s, int fd)
         else if (ft_strncmp(line, "C", 1) == 0)
             aclo[1] += 1;
         else if (ft_strncmp(line, "L", 1) == 0)
-            aclo[2] += 1;
+            s->lgts_count += 1;
         else if (is_object(line))
-            aclo[3] += 1;
-        free(line);
+            s->objs_count += 1;
+        free(line); //TODO: Ver si sobra
 	}
+    s->lgts_count += 1;
     free(line);
     if (aclo[0] != 1 || aclo[1] != 1)
 		return (EXIT_FAILURE);
-    printf(GREEN "suma luces: %d\n", aclo[2] + 1);
-    printf("suma objetos: %d\n"END, aclo[3]);
-    s->lights = malloc(sizeof(t_light) * (aclo[2] + 1));
-    s->objs = malloc(sizeof(t_object) * aclo[3]);
+    s->lights = malloc(sizeof(t_light) * (s->lgts_count + 1));
+    s->objs = malloc(sizeof(t_object) * s->objs_count);
     s->cam = camera_new();
     return (EXIT_SUCCESS);
 }
@@ -118,18 +110,19 @@ int ft_parser(t_scene *scene, int argc, char **argv)
 		return (EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 3)
-		return (close(fd), EXIT_FAILURE);
-    else if (init_structs(scene, fd) == EXIT_FAILURE)
         return (close(fd), EXIT_FAILURE);
+    if (init_structs(scene, fd) == EXIT_FAILURE)
+    {
+        return (close(fd), EXIT_FAILURE);
+    }
 	fd = open(argv[1], O_RDONLY);
 	if (get_input(fd, scene) == EXIT_FAILURE)
     {
         free_scene(scene);
         perror (RED"Erro000r\n"END);
-		return (close(fd), EXIT_FAILURE);// TODO: Liberar structuras
+		return (close(fd), EXIT_FAILURE);
     }
 	close(fd);
     perror (GREEN"OK\n"END);
-    free_scene(scene);
 	return (EXIT_SUCCESS);
 }

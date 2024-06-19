@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:20:02 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/29 15:40:23 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/06/19 13:14:42 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_object
 /*
  *	create new object with n points
 */
-t_object	*object_new(t_shape_type type, t_shape shape);
+t_object	object_new(t_shape_type type, t_shape shape);
 
 /*
  *	destroy object obj
