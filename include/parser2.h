@@ -26,4 +26,7 @@ int     get_vector(t_vec3 *vec, char *line);
 
 float   ft_atof(char *str);
 
+int     is_valid_rt(char *path);
+int     is_valid_xpm(char *path);
+
 #endif

@@ -77,7 +77,7 @@ int	init_scene_debug(t_scene	*scene)
 	return (0);
 }
 
-// Función para printear las estructuras después del parser
+// Función para printear las estructuras después del parser.
 void	test_parser(t_scene	scene)
 {
 	int i = 0;
@@ -103,6 +103,8 @@ void	test_parser(t_scene	scene)
             printf("obj cy: %d center: %f,%f,%f\n", i, scene.objs[i].shape.cy->center.x, scene.objs[i].shape.cy->center.y, scene.objs[i].shape.cy->center.z);
             printf("obj cy: %d normal: %f,%f,%f\n", i, scene.objs[i].shape.cy->normal.x, scene.objs[i].shape.cy->normal.y, scene.objs[i].shape.cy->normal.z);
             printf("obj cy: %d color: %f,%f,%f\n"END, i, scene.objs[i].material.color.x, scene.objs[i].material.color.y, scene.objs[i].material.color.z);
+			if (scene.objs[i].material.has_texture == TRUE)
+				printf("obj cy: %d texture: %s\n"END, i, scene.objs[i].material.texture);
         }
         else if (scene.objs[i].type == sh_plane)
         {

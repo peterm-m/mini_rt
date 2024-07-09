@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:00:10 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 16:56:40 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:13:43 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 typedef struct s_material
 {
 	t_vec4	color;
+	char	*texture;
+	int		has_texture;
 }	t_material;
 
 #endif /* MATERIAL_H*/

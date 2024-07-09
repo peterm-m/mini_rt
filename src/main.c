@@ -6,7 +6,7 @@
 /*   By: adiaz-uf <adiaz-uf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:47:54 by pedromar          #+#    #+#             */
-/*   Updated: 2024/06/19 11:44:41 by adiaz-uf         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:48:57 by adiaz-uf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int main (int argc, char* argv[])
 	if (ft_parser(&scene, argc, argv))
 		return (EXIT_FAILURE);
 	test_parser(scene);
-	//init_scene_debug(&scene);
+	init_scene_debug(&scene);
 	printf("MINIRT %s %s\n", __DATE__, __TIME__);
 	t_win	win =  ft_program(1024, 1024, "minirt");
 	t_render *r = set_render(&win);
@@ -58,3 +58,25 @@ int main (int argc, char* argv[])
 	mlx_loop(win.mlx);
 	return (EXIT_SUCCESS);
 }
+
+
+/*
+
+t_color	color_obj(t_obj *obj, t_hit *hit)
+{
+	float	uv[2];
+	t_color	color;
+
+	color = obj->color;
+	if (obj->id == id_sphere && obj->has_texture)
+	{
+		uv_sphere_map(obj, hit->phit, uv);
+		color = get_pixelcolor(&obj->texture, uv[0], uv[1]);
+	}
+	else if (obj->pattern_num > 0)
+		color = pattern_color(obj, hit->phit);
+	return (color);
+}
+
+
+*/
